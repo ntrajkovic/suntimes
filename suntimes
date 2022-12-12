@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# ********************************************************************
+# suntimes
+# Get daylight times from Internet API and print them nicely
+# (C) 2022 Nenad Trajkovic, MIT License
+# https://github.com/ntrajkovic/suntimes
+# ********************************************************************
+
+# This script use jq utility to parse JSON data
+# https://stedolan.github.io/jq/
+
+# API URL
+api_url="https://api.sunrisesunset.io/json"
+
+# Location (Belgrade, RS)
+longitude=20.46513
+latitude=44.80401
+
+# Text messages
+title="Suntimes"
+description="Daylight times for text-mode"
+credits="Data by SunriseSunset.io"
+# Location
+long_text="Longitude"
+lat_text="Latitude"
+tz_text="Timezone"
+# Astronomical twilight
+fl_text="First light"
+ll_text="Last light"
+# Civil twilight
+dw_text="Dawn"
+ds_text="Dusk"
+# Sunrise and sunset
+sr_text="Sunrise"
+ss_text="Sunset"
+# Solar noon, golden hour and day length
+sn_text="Solar noon"
+gh_text="Golden hour"
+dl_text="Day length"
+
+# Get data
+# TODO: check status
+suntimes=$(curl -s "${api_url}?lat=${latitude}&lng=${longitude}")
+# Astronomical twilight
+first_light=$(jq -r ".results.first_light" <<< "${suntimes}")
+last_light=$(jq -r ".results.last_light" <<< "${suntimes}")
+# Civil twilight
+dawn=$(jq -r ".results.dawn" <<< "${suntimes}")
+dusk=$(jq -r ".results.dusk" <<< "${suntimes}")
+# Sunrise and sunset
+sunrise=$(jq -r ".results.sunrise" <<< "${suntimes}")
+sunset=$(jq -r ".results.sunset" <<< "${suntimes}")
+# Solar noon and golden hour
+solar_noon=$(jq -r ".results.solar_noon" <<< "${suntimes}")
+golden_hour=$(jq -r ".results.golden_hour" <<< "${suntimes}")
+# Day length and timezone
+day_length=$(jq -r ".results.day_length" <<< "${suntimes}")
+timezone=$(jq -r ".results.timezone" <<< "${suntimes}")
+
+# Print nicely
+printf "\n%12s%12s%12s%-12s%s\n" \
+  "${fl_text}:" "${first_light}" "" "${tz_text}:" "${timezone}"
+printf "%12s%12s\n" "${dw_text}:" "${dawn}"
+printf "%12s%12s%12s%-12s%s\n" \
+  "${sr_text}:" "${sunrise}" "" "${long_text}:" "${longitude}"
+printf "%12s%12s%12s%-12s%s\n" \
+  "${sn_text}:" "${solar_noon}" "" "${lat_text}:" "${latitude}"
+printf "%12s%12s\n" "${gh_text}:" "${golden_hour}"
+printf "%12s%12s\n" "${ss_text}:" "${sunset}"
+printf "%12s%12s\n" "${ds_text}:" "${dusk}"
+printf "%12s%12s\n" "${ll_text}:" "${last_light}"
+printf "%12s%9s\n" "${dl_text}:" "${day_length}"
+printf "\n%s\n\n" "${credits}"
