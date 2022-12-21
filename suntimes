@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ********************************************************************
-# suntimes
+# suntimes v1.0.0
 # Get daylight times from Internet API and print them nicely
 # (C) 2022 Nenad Trajkovic, MIT License
 # https://github.com/ntrajkovic/suntimes
