@@ -1,6 +1,6 @@
 # Suntimes
 
-Daylight times for text-mode
+Daylight times for text-mode:
 
 ```
 $ ./suntimes
@@ -18,7 +18,12 @@ Golden hour:  3:10:31 PM
 Data by SunriseSunset.io
 ```
 
+## Credits
+
+Data provided by [SunriseSunset.io](https://sunrisesunset.io/ "Go to website").
+
 ## License
+
 This project is licensed under [MIT License](LICENSE "Read the LICENSE file").
 
 [Know your rights](https://choosealicense.com/licenses/mit/ "Read about MIT License permissions").
