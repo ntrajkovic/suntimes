@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ********************************************************************
-# suntimes v1.0.0
+# suntimes v1.0.1
 # Get daylight times from Internet API and print them nicely
 # (C) 2022 Nenad Trajkovic, MIT License
 # https://github.com/ntrajkovic/suntimes
@@ -38,6 +38,12 @@ ss_text="Sunset"
 sn_text="Solar noon"
 gh_text="Golden hour"
 dl_text="Day length"
+
+# Runtime dependencies check
+command -v curl >/dev/null 2>&1 || {
+  echo -e "\nRuntime dependency curl not found.\n"; exit 1; }
+command -v jq >/dev/null 2>&1 || {
+  echo -e "\nRuntime dependency jq not found.\n"; exit 1; }
 
 # Get data
 # TODO: check status
