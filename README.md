@@ -18,6 +18,15 @@ Golden hour:  3:10:31 PM
 Data by SunriseSunset.io
 ```
 
+## Notes
+
+**Twilight** &nbsp;&ndash;&nbsp; Meaning of some used terms:
+
+* First light &nbsp;&ndash;&nbsp; Astronomical twilight begins
+* Dawn &nbsp;&ndash;&nbsp; Civil twilight begins
+* Dusk &nbsp;&ndash;&nbsp; Civil twilight ends
+* Last light &nbsp;&ndash;&nbsp; Astronomical twilight ends
+
 ## Credits
 
 Data provided by [SunriseSunset.io](https://sunrisesunset.io/ "Go to website").
